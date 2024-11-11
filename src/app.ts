@@ -5,7 +5,6 @@ import { Routes } from "./app/routes";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFoundRoute from "./app/middlewares/notFoundRoute";
 import cookieParser from "cookie-parser";
-import config from "./app/config";
 
 // middlewares parser
 app.use(cors());
