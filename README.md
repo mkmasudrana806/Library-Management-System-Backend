@@ -4,14 +4,11 @@
 # Library Management System
 
 ## Important Links
-- **Server GitHub Repository**: [Library Management Backend](https://github.com/yourusername/library-management-system)
-- **Live API Server**: [Library API Server](https://your-live-url.com)
+- **Server GitHub Repository**: [Library Management Backend](https://github.com/mkmasudrana806/Library-Management-System-Backend)
+- **Live API Server**: [Library API Server](https://library-management-system-backend-rho.vercel.app)
 
 ## Overview
 This project is a backend system built to manage library operations, including user management, book inventory, and borrowing records. It is built with Node.js and TypeScript, PostgreSQL, providing RESTful APIs for client-side applications to interact with the library data. The system includes roles for administrators and members, with appropriate permissions and security using JWT.
-
-## Live URL
-- **Live Server**: [Library Management System API](https://my-api.com)
 
 ## Technology Stack & Packages
 - **Backend**: Node.js, Express.js, TypeScript, Prisma, PostgreSQL, bcrypt, cors
