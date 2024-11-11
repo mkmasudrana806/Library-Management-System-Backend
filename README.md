@@ -8,17 +8,17 @@
 - **Live API Server**: [Library API Server](https://your-live-url.com)
 
 ## Overview
-This project is a backend system built to manage library operations, including user management, book inventory, and borrowing records. It is built with Node.js and TypeScript, providing RESTful APIs for client-side applications to interact with the library data. The system includes roles for administrators and members, with appropriate permissions and security using JWT.
+This project is a backend system built to manage library operations, including user management, book inventory, and borrowing records. It is built with Node.js and TypeScript, PostgreSQL, providing RESTful APIs for client-side applications to interact with the library data. The system includes roles for administrators and members, with appropriate permissions and security using JWT.
 
 ## Live URL
 - **Live Server**: [Library Management System API](https://my-api.com)
 
 ## Technology Stack & Packages
-- **Backend**: Node.js, Express.js, TypeScript, Prisma, PostgreSQL
+- **Backend**: Node.js, Express.js, TypeScript, Prisma, PostgreSQL, bcrypt, cors
 - **Authentication**: JSON Web Tokens (JWT)
 - **Date Handling**: date-fns (for handling dates, overdue checks)
 - **Environment Management**: dotenv
-- **Validation**: Joi (optional if used for input validation)
+ 
 
 ## Setup Instructions
 1. **Clone the repository**:
@@ -31,7 +31,7 @@ This project is a backend system built to manage library operations, including u
    npm install
    ```
 3. **Setup environment variables**:
-   - Create a `.env` file with necessary environment variables (e.g., `DATABASE_URL`, `JWT_SECRET`).
+   - Create a `.env` file with necessary environment variables  root of your project (e.g., `DATABASE_URL`, `JWT_SECRET`).
 4. **Run database migrations**:
    ```bash
    npx prisma migrate dev
@@ -64,10 +64,6 @@ This project is a backend system built to manage library operations, including u
   - Retrieve a list of overdue books with borrower details and overdue days
 
 ## API Endpoints
-
-### Auth
-- **POST** `/auth/login` - Log in a user
-- **POST** `/auth/refresh-token` - Refresh user session token
 
 ### Book
 - **POST** `/books/` - Create a new book
