@@ -29,6 +29,7 @@ This project is a backend system built to manage library operations, including u
    ```
 3. **Setup environment variables**:
    - Create a `.env` file with necessary environment variables  root of your project (e.g., `DATABASE_URL`, `JWT_SECRET`).
+   - an .env.example file is added. make sure you have .env file root of your project with necessary information showed in .evn.example file
 4. **Run database migrations**:
    ```bash
    npx prisma migrate dev
