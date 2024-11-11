@@ -42,7 +42,6 @@ model Member {
   name           String
   email          String         @unique
   phone          String
-  profilePhoto   String?
   membershipDate DateTime       @default(now())
   isDeleted      Boolean        @default(false)
   createdAt      DateTime       @default(now())

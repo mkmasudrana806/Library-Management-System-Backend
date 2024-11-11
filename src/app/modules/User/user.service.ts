@@ -3,20 +3,22 @@ const prisma = new PrismaClient();
 import bcrypt from "bcrypt";
 import config from "../../config";
 
-// ------------ create admin into db ---------------
-const createAdminIntoDB = async (payload: any) => {
+// ------------ create member into   ---------------
+const createMemberIntoDB = async (payload: any) => {
   // hash the password
   const hashedPassword = await bcrypt.hash(
-    payload?.password,
-    config.bcrypt_salt_rounds as string
+    config.default_password as string,
+    Number(config.bcrypt_salt_rounds)
   );
+
   // create user
   const userData = {
-    email: payload?.admin.email,
+    email: payload?.email,
     password: hashedPassword,
-    role: UserRole.ADMIN,
+    role: UserRole.MEMBER,
   };
 
+  // transaction
   const result = await prisma.$transaction(async (transactionClient) => {
     // create user
     await transactionClient.user.create({
@@ -25,7 +27,40 @@ const createAdminIntoDB = async (payload: any) => {
 
     // create admin
     const createdAdminData = await transactionClient.member.create({
-      data: payload?.admin,
+      data: payload,
+    });
+
+    return createdAdminData;
+  });
+
+  return result;
+};
+
+// ------------ create librayian into   ---------------
+const createLibrayianIntoDB = async (payload: any) => {
+  // hash the password
+  const hashedPassword = await bcrypt.hash(
+    config.default_password as string,
+    Number(config.bcrypt_salt_rounds)
+  );
+
+  // create user
+  const userData = {
+    email: payload?.email,
+    password: hashedPassword,
+    role: UserRole.LIBRARIAN,
+  };
+
+  // transaction
+  const result = await prisma.$transaction(async (transactionClient) => {
+    // create user
+    await transactionClient.user.create({
+      data: userData,
+    });
+
+    // create admin
+    const createdAdminData = await transactionClient.member.create({
+      data: payload,
     });
 
     return createdAdminData;
@@ -36,5 +71,6 @@ const createAdminIntoDB = async (payload: any) => {
 
 // export all services
 export const UserServices = {
-  createAdminIntoDB,
+  createMemberIntoDB,
+  createLibrayianIntoDB,
 };
