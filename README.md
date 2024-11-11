@@ -3,8 +3,12 @@
 
 # Library Management System
 
-## Project Name & Description
-A backend API for managing a library system, allowing users to borrow and return books, track overdue items, manage member data, and handle authentication. Built to streamline library processes and provide easy access to borrowing history, overdue items, and member management.
+## Important Links
+- **Server GitHub Repository**: [Library Management Backend](https://github.com/yourusername/library-management-system)
+- **Live API Server**: [Library API Server](https://your-live-url.com)
+
+## Overview
+This project is a backend system built to manage library operations, including user management, book inventory, and borrowing records. It is built with Node.js and TypeScript, providing RESTful APIs for client-side applications to interact with the library data. The system includes roles for administrators and members, with appropriate permissions and security using JWT.
 
 ## Live URL
 - **Live Server**: [Library Management System API](https://my-api.com)
@@ -84,24 +88,6 @@ A backend API for managing a library system, allowing users to borrow and return
 - **GET** `/members/:memberId` - Retrieve a member by ID
 - **PUT** `/members/:memberId` - Update member information
 - **DELETE** `/members/:memberId` - Delete a member
-
-## Important Links
-- **Server GitHub Repository**: [Library Management Backend](https://github.com/yourusername/library-management-system)
-- **Live API Server**: [Library API Server](https://your-live-url.com)
-
-## Known Issues/Bugs
-- **Issue 1**: Token refresh may sometimes fail under heavy load.
-- **Issue 2**: Date handling inconsistencies on different time zones (using UTC may help).
-- **Bug Fixes in Progress**: Improvements to input validation and error handling.
-
-## Overview
-This project is a backend system built to manage library operations, including user management, book inventory, and borrowing records. It is built with Node.js and TypeScript, providing RESTful APIs for client-side applications to interact with the library data. The system includes roles for administrators and members, with appropriate permissions and security using JWT.
-
-## Features Recap
-- Role-based access control with authentication
-- Book inventory management with overdue tracking
-- Member creation and management
-- Borrowing and return tracking with real-time overdue notifications
 
 **Thank you for using the Library Management System!**
 
