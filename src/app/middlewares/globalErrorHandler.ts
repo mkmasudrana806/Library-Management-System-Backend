@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { constants } from "http2";
+import { constants as httpStatus } from "http2";
 
 // ----------------- global error handler middleware ----------------
 const globalErrorHandler = (
@@ -8,10 +8,10 @@ const globalErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(constants.HTTP_STATUS_INTERNAL_SERVER_ERROR).json({
+  res.status(httpStatus.HTTP_STATUS_INTERNAL_SERVER_ERROR).json({
     success: false,
+    status: err?.status || httpStatus.HTTP_STATUS_INTERNAL_SERVER_ERROR,
     message: err.message || "Something went wrong",
-    error: err,
   });
 };
 
