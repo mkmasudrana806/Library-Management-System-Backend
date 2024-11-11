@@ -5,6 +5,9 @@ const router = express.Router();
 // borrow a book
 router.post("/", BorrowRecordController.borrowBook);
 
+// get all borrow books lists
+router.get("/overdue", BorrowRecordController.getOverdueBorrowLists);
+
 export const BorrowRecordRoutes = router;
 
 // return book

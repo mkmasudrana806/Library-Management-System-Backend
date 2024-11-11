@@ -1,4 +1,5 @@
-import { BorrowRecord, PrismaClient, UserRole } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import { differenceInDays } from "date-fns";
 const prisma = new PrismaClient();
 
 // ------------ borrow a book   ---------------
@@ -52,7 +53,50 @@ const returnBookFromDB = async (payload: { borrowId: string }) => {
   return null;
 };
 
+// ------------ return list of overdue days borrowed info --------------------
+const getOverdueBorrowListsFromDB = async () => {
+  // Define the cutoff date (14 days before the current date)
+  const overdueCutoffDate = new Date();
+  overdueCutoffDate.setDate(overdueCutoffDate.getDate() - 14);
+
+  // Fetch borrow records where the  borrowDate is more than 14 days in the past
+  const overdueRecords = await prisma.borrowRecord.findMany({
+    where: {
+      isDeleted: false,
+      borrowDate: {
+        lt: overdueCutoffDate, // Borrow date is older than 14 days ago
+      },
+    },
+    include: {
+      book: {
+        select: {
+          title: true,
+        },
+      },
+      member: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  // Map the overdue records to include overdueDays
+  const overdueData = overdueRecords.map((record) => {
+    const overdueDays = differenceInDays(new Date(), record.borrowDate) - 14;
+
+    return {
+      borrowId: record.borrowId,
+      bookTitle: record.book.title,
+      borrowerName: record.member.name,
+      overdueDays,
+    };
+  });
+  return overdueData;
+};
+
 export const BorrowRecordServices = {
   borrowBookIntoDB,
   returnBookFromDB,
+  getOverdueBorrowListsFromDB,
 };
